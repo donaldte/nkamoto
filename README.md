@@ -1,4 +1,4 @@
-Voici un exemple de contenu pour votre fichier README.md, qui explique comment cloner le projet depuis un dépôt Git, installer les dépendances depuis le fichier `requirements.txt`, et exécuter le projet sur une machine locale :
+
 
 ```markdown
 # NKAMOTO - Application de Gestion des Motos Volées
