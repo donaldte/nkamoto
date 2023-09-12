@@ -6,6 +6,7 @@ from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('moto.urls')),
+    path('compte/', include('compte.urls')),
 ]
 
 # Servez les fichiers médias en mode développement

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{% block title %} {% endblock %}</title>
+  <title>NKAMOTO | {% block title %} {% endblock %}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -27,13 +27,13 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: KnightOne
-  * Updated: Aug 30 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/knight-simple-one-page-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    #nkamoto{
+      background-color: #3D3D3D;
+  }
+    {% block style %}
+    {% endblock %}
+  </style>
 </head>
 
 <body>
@@ -43,18 +43,27 @@
     <div class="container-fluid">
 
       <div class="row justify-content-center">
-        <div class="col-xl-9 d-flex align-items-center justify-content-lg-between">
-          <h1 class="logo me-auto me-lg-0"><a href="index.html">NKAMOTO</a></h1>
+        <div id="nkamoto" class="col-xl-9 d-flex align-items-center justify-content-lg-between">
+          <h1 class="logo me-auto me-lg-0"><a href="/">NKAMOTO</a></h1>
           <!-- Uncomment below if you prefer to use an image logo -->
           <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
           <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-              <li><a class="nav-link scrollto active" href="#hero">Acceuil</a></li>
+              {% if request.user.is_authenticated %}
+              <li><a class="nav-link scrollto active" href="#hero">Tableau de bord </a></li>
+              <li><a class="nav-link scrollto" href="#about">Vos motos</a></li>
+              <li><a class="nav-link scrollto" href="#services">Enregistrer une moto</a></li>
+              <li><a class="nav-link scrollto " href="#portfolio">Signaler un vole</a></li>
+              <li><a class="nav-link scrollto " href="#portfolio">Moto voler</a></li>
+              <li><a class="nav-link scrollto" href="#pricing">Profile</a></li>
+              {% else %}
+              <li><a class="nav-link scrollto active" href="/">Acceuil</a></li>
               <li><a class="nav-link scrollto" href="#about">A propos</a></li>
               <li><a class="nav-link scrollto" href="#services">Services</a></li>
               <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
               <li><a class="nav-link scrollto" href="#pricing">Tarif</a></li>
+              {% endif %}
               <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="#">Drop Down 1</a></li>
@@ -76,15 +85,36 @@
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->
-
-          <a href="#about" class="get-started-btn scrollto">Commence</a>
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'compte:logout' %}" class="get-started-btn"> Logout </a>
+          {% else %}
+          <a href="{% url 'compte:dashboard' %}" class="get-started-btn">Tableau de bord</a>
+          {% endif %}
         </div>
       </div>
 
     </div>
   </header><!-- End Header -->
 
+<br><br><br>
+    <div class="row my-10">
+      {% if messages %}
+      {% for message in messages %}
+          <div class="container-fluid p-0">
+              <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="True">&times;</span>
+                  </button>
+                  {{ message|safe }}
+              </div>
+          </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+
   {% block content %}
+  
 
   {% endblock %}
 
