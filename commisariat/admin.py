@@ -5,8 +5,8 @@ from .models import Commissariat, MotoVolee
 # Register your models here.
 
 class CommissariatAdmin(admin.ModelAdmin):
-    list_display = ('nom_commissariat', 'adresse_commissariat', 'responsable')
-    list_filter = ('responsable',)
+    list_display = ('nom_commissariat', 'adresse_commissariat', 'responsable_commissariat')
+    list_filter = ('responsable_commissariat',)
 
 class MotoVoleeAdmin(admin.ModelAdmin):
     list_display = ('moto', 'commissariat')

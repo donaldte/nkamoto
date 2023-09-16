@@ -7,4 +7,5 @@ urlpatterns = [
     path('detail_moto/<int:pk>/', views.detail_about_moto, name='detail_moto'),
     path('list_moto/', views.list_moto, name='list_moto'),
     path('list_moto_volee/', views.list_moto_volee, name='list_moto_volee'),
+    path('declaration_vol/', views.declaration_vol, name='declaration_vol'),
 ]

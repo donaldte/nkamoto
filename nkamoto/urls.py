@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('moto/', include('moto.urls')),
     path('compte/', include('compte.urls')),
+    path('commisariat/', include('commisariat.urls')),
 ]
 
 # Servez les fichiers médias en mode développement

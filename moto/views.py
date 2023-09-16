@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 from django.views import View
 from commisariat.models import MotoVolee
-from moto.models import ImageMoto, Moto
+from moto.models import ImageMoto, Moto, DeclarationVol
 
-
+from django.contrib import messages
 class IndexView(View):
     """
     Name: IndexView
@@ -69,3 +69,29 @@ def list_moto_volee(request):
     """
     motos = MotoVolee.objects.all()
     return render(request, 'moto/liste_moto_volee.html', {'motos': motos})
+
+
+@login_required
+def declaration_vol(request, *args, **kwargs):
+    """
+    Name: declaration_vol
+    Description: This function is used to declare a stolen moto.
+    """
+    motos = Moto.objects.filter(proprietaire=request.user)
+    if request.method == 'POST':
+        moto_id = request.POST.get('moto')
+        date_vol = request.POST.get('date_vol')
+        quartier = request.POST.get('quartier')
+        commentaire = request.POST.get('commentaire')
+        moto = Moto.objects.get(pk=moto_id)
+        if moto.proprietaire != request.user:
+            messages.error(request, 'Vous ne pouvez pas déclarer le vol d\'une moto qui ne vous appartient pas')
+            return render(request, 'moto/declaration_vol.html')
+        else:
+            DeclarationVol.objects.create(moto_id=moto_id, date_vol=date_vol, 
+                                        quartier=quartier, 
+                                        commentaire=commentaire, 
+                                        utilisateur=request.user)
+            messages.success(request, 'Votre déclaration de vol a été enregistrée avec succès')
+        return redirect('moto:list_moto')    
+    return render(request, 'moto/declaration_vol.html', {'motos': motos})

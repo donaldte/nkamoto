@@ -41,3 +41,18 @@ class ImageMoto(NkamotoBase):
     
     def __str__(self):
         return f"Image de {self.moto}"
+    
+    
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from commisariat import models
+
+@receiver(post_save, sender=DeclarationVol)
+def create_moto_volee(sender, instance, created, **kwargs):
+    if created:
+        moto_volee = models.MotoVolee(moto=instance.moto)
+        moto_volee.commentaire = instance.commentaire  
+        moto_volee.date_vol = instance.date_vol
+        moto_volee.save()
+    
