@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %} creation {% endblock %}
+{% block style %} 
+#nkamoto{
+    background-color: #3D3D3D;
+}
+{% endblock %}
+{% block content %}
+<main class="d-flex w-70">
+    <div class="container d-flex flex-column">
+        <div class="row vh-100">
+            <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+
+                    <div class="text-center mt-4">
+                        <h1 class="h2">LISTE MOTO</h1>
+                        <p class="lead">
+                            Liste de vos motos sur NKAMOTO
+                        </p>
+                    </div>
+
+                    <input class="form-control" type="text" id="searchInput" placeholder="Recherche...">
+
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Matricule</th>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Iterate through motorcycles and create rows -->
+                            {% for moto in motos %}
+                                <tr>
+                                    <td><a href="{{ moto.get_absolute_url }}">{{ moto.numero_matricule }}</a></td>
+                                    <td>{{ moto.type_moto }}</td>
+                                    <td>
+                                        <a href="{{moto.get_absolute_url}}" class="btn btn-success">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</main>   
+
+{% endblock %}

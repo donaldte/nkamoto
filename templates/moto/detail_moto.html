@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %} creation {% endblock %}
+{% block style %} 
+#nkamoto{
+    background-color: #3D3D3D;
+}
+{% endblock %}
+{% block content %}
+<main class="d-flex">
+    <div class="container">
+        <div class="row vh-100">
+            <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
+                <div class="d-table-cell align-middle">
+
+                    <div class="text-center mt-4">
+                        <h1 class="h2">DETAIL</h1>
+                        <p class="lead">
+                            Detail de votre moto sur NKAMOTO
+                        </p>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <h2> Matricule: <strong class="text-success">  {{ moto.numero_matricule|upper }} </strong> </h2>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h2> Type:  {{ moto.type_moto|upper }} </h2>
+                            {% if moto.proprietaire == request.user %}
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <!-- ======= Portfolio Section ======= -->
+                    <section id="portfolio" class="portfolio">
+                        <div class="container">
+                
+                        <div class="section-title">
+                            <h2>Images</h2>
+                            <p></p>
+                        </div>
+  
+          
+            
+  
+          <div class="row portfolio-container">
+  
+            {% for pic in moto.get_list_image_of_moto %}
+            <div class="col-lg-4 col-md-3 portfolio-item filter-app">
+                <img src="{{ pic.image.url }}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>{{moto.numero_matricule}}</h4>
+                  <p>{{moto.type_moto}}</p>
+                  <a href="{{ pic.image.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title=""><i class="bx bx-plus"></i></a>
+                  <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            {% empty %}
+            <p class="text-center"> pas d'image </p>
+            {% endfor %}
+  
+            
+  
+    
+  
+        </div>
+      </section><!-- End Portfolio Section -->
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</main>    
+
+{% endblock %}

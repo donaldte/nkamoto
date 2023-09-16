@@ -27,6 +27,9 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
+  <!-- Add FontAwesome CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
   <style>
     #nkamoto{
       background-color: #3D3D3D;
@@ -52,10 +55,10 @@
             <ul>
               {% if request.user.is_authenticated %}
               <li><a class="nav-link scrollto active" href="#hero">Tableau de bord </a></li>
-              <li><a class="nav-link scrollto" href="#about">Vos motos</a></li>
-              <li><a class="nav-link scrollto" href="#services">Enregistrer une moto</a></li>
+              <li><a class="nav-link scrollto" href="{% url 'moto:list_moto' %}">Vos motos</a></li>
+              <li><a class="nav-link scrollto" href="{% url 'moto:create_moto' %}">Enregistrer une moto</a></li>
               <li><a class="nav-link scrollto " href="#portfolio">Signaler un vole</a></li>
-              <li><a class="nav-link scrollto " href="#portfolio">Moto voler</a></li>
+              <li><a class="nav-link scrollto " href="{% url 'moto:list_moto_volee' %}">Moto voler</a></li>
               <li><a class="nav-link scrollto" href="#pricing">Profile</a></li>
               {% else %}
               <li><a class="nav-link scrollto active" href="/">Acceuil</a></li>
@@ -154,6 +157,30 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("#add_image").click(function() {
+        var newImageField = '<div class="form-group">' +
+          '<label for="id_image">Image :</label>' +
+          '<input type="file" name="image" class="form-control" id="id_image">' +
+          '</div>';
+        $("#images").append(newImageField);
+      });
+    });
+  </script>
+
+<script>
+    $(document).ready(function() {
+        $("#searchInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("table tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+</script>
 
 </body>
 

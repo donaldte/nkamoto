@@ -3,9 +3,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from django.contrib import admin
+from moto import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('moto.urls')),
+    path('', views.IndexView.as_view(), name='index'),
+    path('moto/', include('moto.urls')),
     path('compte/', include('compte.urls')),
 ]
 

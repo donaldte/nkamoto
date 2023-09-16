@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from compte.models import CustomUser, NkamotoBase
 
@@ -22,6 +23,14 @@ class Moto(NkamotoBase):
     
     def __str__(self):
         return self.numero_matricule
+    
+    
+    def get_absolute_url(self):
+        return reverse("moto:detail_moto", kwargs={"pk": self.pk})
+    
+    def get_list_image_of_moto(self):
+        return self.images.all()
+    
 
 class ImageMoto(NkamotoBase):
     """
