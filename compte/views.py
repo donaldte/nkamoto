@@ -6,6 +6,10 @@ from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from moto.models import Moto, DeclarationVol
+from commisariat.models import MotoVolee
+
+
 
 class DashboardView(LoginRequiredMixin, View):
     """
@@ -17,7 +21,16 @@ class DashboardView(LoginRequiredMixin, View):
     template_name = 'compte/dashboard.html'
     
     def get(self, request):
-        return render(request, self.template_name)
+        vos_motos = Moto.objects.filter(proprietaire=request.user).count()
+        vos_moto_volee = DeclarationVol.objects.filter(utilisateur=request.user).count()
+        tous_les_motos_volees = MotoVolee.objects.all().count()
+        context = {
+            'vos_motos': vos_motos,
+            'vos_moto_volee': vos_moto_volee,
+            'tous_les_motos_volees': tous_les_motos_volees
+        }
+        print(context)
+        return render(request, self.template_name, context)
     
     
     def post(self, request):

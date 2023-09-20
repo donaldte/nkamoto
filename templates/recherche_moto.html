@@ -52,9 +52,12 @@
                             {% endif %}
                         </div>
                     </div>
-
+                    {% if request.user.is_authenticated %}
+                    <p class="text-center"><b>Description</b>: {{ moto.description }}</p>
+                    {% else %}
                     <p class="text-center"><b>Description</b>: {{ moto.description|truncatewords:20 }}.... <a href="{% url 'compte:login' %}"> conectez vous pour avoir tous les informations </a></p>
 
+                    {% endif %}
                     {% if request.user.is_authenticated %}
 
                     <section id="portfolio" class="portfolio">

@@ -2,11 +2,110 @@
 
 {% block title %} Dashboard {% endblock %}
 {% block style %} 
-#nkamoto{
+#nkamoto {
     background-color: #3D3D3D;
 }
+.card-box {
+    margin-bottom: 20px;
+}
+.card-green {
+    background-color: #4CAF50;
+}
+.card-blue {
+    background-color: #2196F3;
+}
+.card-orange {
+    background-color: #FF9800;
+}
+.card-red {
+    background-color: #F44336;
+}
+.card-purple {
+    background-color: #9C27B0;
+}
+</style>
 {% endblock %}
 
 {% block content %}
+<div class="container mt-4">
+<br>
+<br>
+<br>
+    <div class="row">
+        <div class="col-md-6 col-lg-2 col-xlg-2">
+            <div class="card card-hover card-green">
+                <div class="box text-center card-box">
+                    <h1 class="font-light text-white">
+                        <span class="">{{ vos_motos }}</span>
+                    </h1>
+                    <h6 class="text-white">Vos motos</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-2 col-xlg-2">
+            <div class="card card-hover card-blue">
+                <div class="box text-center card-box">
+                    <h1 class="font-light text-white">  
+                        <span class="">{{ vos_moto_volee }}</span>
+                    </h1>
+                    <h6 class="text-white">Vos moto volees </h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-2 col-xlg-2">
+            <div class="card card-hover card-orange">
+                <div class="box text-center card-box">
+                    <h1 class="font-light text-white">
+                        <span class="">0</span>
+                    </h1>
+                    <h6 class="text-white"> Frais d'utilisation </h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-2 col-xlg-2">
+            <div class="card card-hover card-red">
+                <div class="box text-center card-box">
+                    <h1 class="font-light text-white">
+                        <span class="">{{ tous_les_motos_volees }}</span>
+                    </h1>
+                    <h6 class="text-white">Moto signale </h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-2 col-xlg-2">
+            <div class="card card-hover card-purple">
+                <div class="box text-center card-box">
+                    <h1 class="font-light text-white">
+                        <span class="">0</span>
+                    </h1>
+                    <h6 class="text-white">xxxxxxx</h6>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-6 col-lg-2 col-xlg-2">
+            <div class="card card-hover card-blue">
+                <div class="box text-center card-box">
+                    <h1 class="font-light text-white">
+                        <span class="">0</span>
+                    </h1>
+                    <h6 class="text-white">xxxxxx</h6>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {% endblock %}

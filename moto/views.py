@@ -108,7 +108,6 @@ def recherche_moto(request, *args, **kwargs):
         motos = Moto.objects.filter(numero_matricule__icontains=matricule)
         if not motos.exists():
             messages.info(request, 'Aucune moto trouvée ayant le matricule: {}'.format(matricule))
-        
         else:
             moto = motos.first()
             messages.success(request, "Moto trouvée avec connectez vous pour avoir plus d'info dessus.")    

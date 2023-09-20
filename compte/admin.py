@@ -5,3 +5,9 @@ class CustomUserAdmin(admin.ModelAdmin):
     list_filter = ('is_commissariat',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
+admin.site.site_header = 'NKAMOTO Administration'
+admin.site.site_title = 'NKAMOTO Admin'
+admin.site.index_title = 'Bienvenue dans NKAMOTO Admin'
+

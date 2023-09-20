@@ -9,6 +9,7 @@ class ImageMotoInline(admin.TabularInline):
 class MotoAdmin(admin.ModelAdmin):
     inlines = [ImageMotoInline]
     list_display = ('numero_matricule', 'type_moto', 'proprietaire')
+    search_fields = ('numero_matricule', 'proprietaire__username', 'type_moto', 'description')
 
 class DeclarationVolAdmin(admin.ModelAdmin):
     list_display = ('utilisateur', 'moto', 'date_vol', 'quartier')
