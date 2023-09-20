@@ -20,6 +20,7 @@ class Moto(NkamotoBase):
     numero_matricule = models.CharField(max_length=255)
     type_moto = models.CharField(max_length=255)
     proprietaire = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    description = models.TextField(null=True, blank=True, help_text='decrivez votre moto en quelques ligne.')
     
     def __str__(self):
         return self.numero_matricule

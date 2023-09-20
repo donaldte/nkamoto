@@ -6,6 +6,7 @@ class MotoForm(forms.ModelForm):
     class Meta:
         model = Moto
         fields = ['numero_matricule', 'type_moto']
+        
 
 class ImageMotoForm(forms.ModelForm):
     class Meta:

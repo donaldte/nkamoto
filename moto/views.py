@@ -39,7 +39,7 @@ def create_moto_with_images(request):
     
     return render(request, 'moto/create_moto.html')
     
-
+@login_required
 def detail_about_moto(request, *args, **kwargs):
     """
     Name: detail_about_moto
@@ -95,3 +95,22 @@ def declaration_vol(request, *args, **kwargs):
             messages.success(request, 'Votre déclaration de vol a été enregistrée avec succès')
         return redirect('moto:list_moto')    
     return render(request, 'moto/declaration_vol.html', {'motos': motos})
+
+
+
+def recherche_moto(request, *args, **kwargs):
+    """
+    Name: recherche_moto
+    Description: This function is used to search for a moto.
+    """
+    matricule = request.GET.get('matricule')
+    if matricule:
+        motos = Moto.objects.filter(numero_matricule__icontains=matricule)
+        if not motos.exists():
+            messages.info(request, 'Aucune moto trouvée ayant le matricule: {}'.format(matricule))
+        
+        else:
+            moto = motos.first()
+            messages.success(request, "Moto trouvée avec connectez vous pour avoir plus d'info dessus.")    
+            return render(request, 'recherche_moto.html', {'moto': moto})
+    return render(request, 'recherche_moto.html')
