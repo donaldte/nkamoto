@@ -15,5 +15,4 @@ urlpatterns = [
 ]
 urlpatterns += staticfiles_urlpatterns()
 # Servez les fichiers médias en mode développement
-
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
