@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block extrahead %}
+    <style>
+        body {
+            background-color: black;
+        }
+        .header {
+            background-color: blue;
+        }
+        .breadcrumbs {
+            background-color: blue;
+        }
+        .breadcrumbs a {
+            color: white;
+        }
+    </style>
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}"> NKAMOTO </a></h1>
+{% endblock %}
