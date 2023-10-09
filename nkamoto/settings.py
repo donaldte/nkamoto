@@ -86,6 +86,7 @@ if not DEBUG:
         }
     }
 else:
+    print('herere')
     DATABASES = {
         'default': dj_database_url.parse(config('DATABASE_URL'))
     }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+  {% include 'dashboard/include/meta.html' %} 
+
+  {% block header %} {% endblock header %}
+
+</head>
+
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+        {% include 'dashboard/include/sidebar.html' %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="container-fluid p-0">
+                            <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="True">&times;</span>
+                                </button>
+                                {{ message|safe }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% include 'dashboard/include/header.html' %}
+
+
+                {% block content %}
+
+                {% endblock %}
+
+
+
+            </div>    
+
+
+
+        </div>
+
+
+    </div>
+    
+    {% include 'dashboard/include/footer.html' %} 
+
+</body>  
+
+
+

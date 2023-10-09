@@ -18,7 +18,7 @@ class DashboardView(LoginRequiredMixin, View):
     Author: DonaldProgrammeur
     """
     
-    template_name = 'compte/dashboard.html'
+    template_name = 'dashboard/index.html'
     
     def get(self, request):
         vos_motos = Moto.objects.filter(proprietaire=request.user).count()

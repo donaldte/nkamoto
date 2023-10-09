@@ -1,0 +1,112 @@
+<!-- Sidebar -->
+{% load static %}
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'compte:dashboard' %}">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <img with="50px" height="50px" src="{% static 'dashboard/img/logo.png' %}">
+        </div>
+        <div class="sidebar-brand-text mx-3"> NKAMOTO <sup></sup></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url 'compte:dashboard' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>NKAMOTO</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Moto</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">moto</h6>
+                <a class="collapse-item" href="{% url 'moto:list_moto' %}">liste moto</a>
+                <a class="collapse-item" href="{% url 'moto:create_moto' %}">enregistrer une moto</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Volee</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Vole</h6>
+                <a class="collapse-item" href="{% url 'moto:list_moto_volee' %}">liste des moto volees </a>
+                <a class="collapse-item" href="{% url 'moto:declaration_vol'  %}">declarer un vole</a>
+                {% comment %} <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                <a class="collapse-item" href="utilities-other.html">Other</a> {% endcomment %}
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Compte
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>compte</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">{{request.user.get_fullname|upper}}</h6>
+                <a class="collapse-item" href="{% url 'compte:logout' %}">Deconnexion</a>
+                <a class="collapse-item" href="#">Changer de mot de passe</a>
+                {% comment %} <div class="collapse-divider"></div>
+                <h6 class="collapse-header">Other Pages:</h6>
+                <a class="collapse-item" href="404.html">404 Page</a>
+                <a class="collapse-item" href="blank.html">Blank Page</a> {% endcomment %}
+            </div>
+        </div>
+    </li>
+
+    
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+    <!-- Sidebar Message -->
+    <div class="sidebar-card d-none d-lg-flex">
+        <img class="sidebar-card-illustration mb-2" src="{% static 'dashboard/img/undraw_rocket.svg' %}" alt="...">
+        <p class="text-center mb-2"><strong>NKAMOTO Pro</strong> Ajouter plus de fonctionalites !</p>
+        <a class="btn btn-success btn-sm" href="#">Passez à Pro!</a>
+    </div>
+
+</ul>
+<!-- End of Sidebar -->

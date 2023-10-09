@@ -53,48 +53,22 @@
 
           <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-              {% if request.user.is_authenticated %}
-              <li><a class="nav-link scrollto active" href="{% url 'compte:dashboard' %}">Tableau de bord </a></li>
-              <li><a class="nav-link scrollto" href="{% url 'moto:list_moto' %}">Vos motos</a></li>
-              <li><a class="nav-link scrollto" href="{% url 'moto:create_moto' %}">Enregistrer une moto</a></li>
-              <li><a class="nav-link scrollto " href="{% url 'moto:declaration_vol'  %}">Declarer un vol</a></li>
-              <li><a class="nav-link scrollto " href="{% url 'moto:list_moto_volee' %}">Moto voler</a></li>
-              <li><a class="nav-link scrollto" href="#pricing">Profile</a></li>
-              {% else %}
+              
               <li><a class="nav-link scrollto active" href="/">Acceuil</a></li>
               <li><a class="nav-link scrollto" href="#about">A propos</a></li>
               <li><a class="nav-link scrollto" href="#services">Services</a></li>
               <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
               <li><a class="nav-link scrollto" href="#pricing">Tarif</a></li>
               
-              {% endif %}
+          
               <li><a class='nav-link' href="{% url 'moto:recherche_moto' %}"> Recherchez une moto </a>
-              {% comment %} <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                <ul>
-                  <li><a href="#">Drop Down 1</a></li>
-                  <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                    <ul>
-                      <li><a href="#">Deep Drop Down 1</a></li>
-                      <li><a href="#">Deep Drop Down 2</a></li>
-                      <li><a href="#">Deep Drop Down 3</a></li>
-                      <li><a href="#">Deep Drop Down 4</a></li>
-                      <li><a href="#">Deep Drop Down 5</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">Drop Down 2</a></li>
-                  <li><a href="#">Drop Down 3</a></li>
-                  <li><a href="#">Drop Down 4</a></li>
-                </ul>
-              </li> {% endcomment %}
+             
               <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->
-          {% if request.user.is_authenticated %}
-          <a href="{% url 'compte:logout' %}" class="get-started-btn"> Logout </a>
-          {% else %}
           <a href="{% url 'compte:dashboard' %}" class="get-started-btn">Tableau de bord</a>
-          {% endif %}
+      
         </div>
       </div>
 
