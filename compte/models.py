@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -20,6 +21,23 @@ class CustomUser(AbstractUser, NkamotoBase):
     """
     is_commissariat = models.BooleanField(default=False)
     email = models.EmailField(unique=True, null=True, blank=True)
+    on_trial = models.BooleanField(default=True)
+    
+    
+    # on trial is just for testing purposes of 13 days from the day of registration
+    
+    
+    def still_on_trial(self):
+        registration_date = self.created_at.date()
+        today = datetime.date.today()
+        difference = today - registration_date
+        if difference.days > 13:
+            self.on_trial = False
+            self.save()
+        return difference.days <= 13
+    
+    
+    
 
 
 class Profile(NkamotoBase):
