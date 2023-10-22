@@ -7,6 +7,9 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 LOGIN_URL = 'compte:login'
+AGENCY_CODE=config('AGENCY_CODE')
+SECURE_CODE=config('SECURE_CODE')
+
 try:
     from django.contrib.messages import constants as messages
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'commisariat',
     'compte',
     'moto',
+    'payment',
 
 ]
 

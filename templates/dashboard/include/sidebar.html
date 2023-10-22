@@ -44,6 +44,22 @@
         </div>
     </li>
 
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseT"
+            aria-expanded="true" aria-controls="collapseT">
+            <i class="fas fa-dollar-sign"></i>
+            <span>Payments</span>
+        </a>
+        <div id="collapseT" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Payment</h6>
+                <a class="collapse-item" href="#">liste payment</a>
+                <a class="collapse-item" href="{% url 'payment:payment' %}">Faire un paiement</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

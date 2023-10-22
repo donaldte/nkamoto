@@ -66,11 +66,11 @@ class Payment(NkamotoBase):
     
     # Payment details
     order_number = models.CharField(max_length=255, unique=True, blank=True)
-    type_plan = models.ForeignKey(TypePlan, on_delete=models.CASCADE, related_name='payments')
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    type_plan = models.ForeignKey(TypePlan, on_delete=models.CASCADE, null=True, related_name='payments')
+    amount = models.DecimalField(max_digits=10, null=True,  decimal_places=2)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING)
     type = models.CharField(max_length=10, choices=TYPE_CHOICES, default=DEPOT)
-    method = models.CharField(max_length=10, choices=METHOD_CHOICES, default=MOBILE_MONEY)
+    method = models.CharField(max_length=132, choices=METHOD_CHOICES, default=MOBILE_MONEY)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payments')
     comment = models.TextField(null=True, blank=True)
     fraud = models.BooleanField(default=False)

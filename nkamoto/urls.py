@@ -12,6 +12,7 @@ urlpatterns = [
     path('moto/', include('moto.urls')),
     path('compte/', include('compte.urls')),
     path('commisariat/', include('commisariat.urls')),
+    path('payment/', include('payment.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 # Servez les fichiers médias en mode développement

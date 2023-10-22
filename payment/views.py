@@ -4,7 +4,7 @@ from django.shortcuts import render
 import uuid
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Payment
+from .models import Payment, TypePlan
 from django.conf import settings
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -24,30 +24,60 @@ def generate_payment():
 
 
 
-# class PaymentView(LoginRequiredMixin, View):
+class PaymentView(LoginRequiredMixin, View):
     
-#     template_name = 'payment.html'
-#     """ let order_number = "{{order_number}}";
-#         let agency_code = "{{agency_code}}";
-#         let secure_code = "{{secure_code}}";
-#         let domain_name = "{{domain_name}}";
-#         let url_redirection_success = "{{url_redirection_success}}";
-#         let url_redirection_failed = "{{url_redirection_failed}}";
-#         let amount = "{{ amount}}";
-#         let city = "{{city}}";
-#         let email = "{{email}}";
-#         let clientFirstName = "John";
-#         let clientLastName = "Doe";
-#         let clientPhone = "{{clientPhone}}";"""
+    template_name = 'payment/payment.html'
     
-#     def get(self, request, *args, **kwargs):
+
+    def get_info(self):
+        agency_code = settings.AGENCY_CODE
+        secure_code =  settings.SECURE_CODE
+        domain_name = self.request.get_host()
+        print(domain_name)
+        order_number = generate_payment()
+        domain_name = f"https://{domain_name}/"
+        print(domain_name)
+        return agency_code, secure_code, domain_name, order_number
         
+    def get(self, request, *args, **kwargs):
         
-#         return render(request, self.template_name)
+        get_info = self.get_info()
+        agency_code = get_info[0]
+        secure_code = get_info[1]
+        domain_name = get_info[2]
+        order_number = get_info[3]
+        url_redirection_success = f"{domain_name}payment/success"
+        url_redirection_failed = f"{domain_name}payment/failed"
+        amount = 1000
+        city = "Douala"
+        email = request.user.email
+        clientFirstName = request.user.first_name
+        clientLastName = request.user.last_name
+
+        payment = Payment.objects.create(
+            order_number=order_number,
+            user=request.user
+        )
+        list_plan = TypePlan.objects.all()
+        
+        context = {
+            'order_number': order_number,
+            'url_redirection_success': url_redirection_success,
+            'url_redirection_failed': url_redirection_failed,
+            'amount': amount,
+            'city': city,
+            'email': email,
+            'clientFirstName': clientFirstName,
+            'clientLastName': clientLastName,
+            'clientPhone': '',
+            'agency_code': agency_code,
+            'secure_code': secure_code,
+            'list_plan': list_plan,
+        }
+      
+        return render(request, self.template_name, context)
     
-#     def post(self, request, *args, **kwargs):
-#         return render(request, self.template_name)
-    
+   
     
 
     

@@ -1,0 +1,76 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="text-center mt-4">
+      <h1 class="h2">FAIRE UN PAIEMENT</h1>
+      <p class="lead">
+          Faire un paiement pour plus de services.
+      </p>
+  </div>
+    
+       
+                <form>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="type">Type de plan </label>
+                            <select class="form-control" id="amount" name="type">
+                                {% for type in list_plan %}
+                                    <option value="{{ type.price }}">{{ type.name }}/{{ type.duration }} jours/ {{ type.price}} XOF</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div><br>
+
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label for="city">Ville</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="Ville">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="clientPhone">Numero téléphone pour payment</label>
+                            <input type="text" class="form-control" id="clientPhone" name="clientPhone" placeholder="Téléphone">
+                        </div>    
+                    </div><br>
+
+                    <!-- pay now button -->
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-primary btn-block" onclick="calltouchpay()">Payer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+<br><br> <br>
+{% endblock %}
+
+
+
+{% block js %}
+
+<script src=https://touchpay.gutouch.com/touchpay/script/prod_touchpay-0.0.1.js
+  type="text/javascript"></script>
+  <script type="text/javascript">
+
+  let order_number = "{{order_number}}";
+  let agency_code = "{{agency_code}}";
+  let secure_code = "{{secure_code}}";
+  let domain_name = "{{domain_name}}";
+  let url_redirection_success = "{{url_redirection_success}}";
+  let url_redirection_failed = "{{url_redirection_failed}}";
+  let amount = "{{ amount}}";
+  let city = document.getElementById("city").value;
+  let email = "{{email}}";
+  let clientFirstName = "{{clientFirstName}}";
+  let clientLastName = "{{clientLastName}}";
+  let clientPhone = document.getElementById("clientPhone").value;
+     
+  function calltouchpay(){
+  SendPaymentInfos(order_number,agency_code,secure_code,domain_name,url_redirection_success,
+        url_redirection_failed,amount,city,email,clientFirstName,clientLastName,clientPhone);
+  }
+</script>
+
+{% endblock %}
