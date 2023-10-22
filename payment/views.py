@@ -24,29 +24,29 @@ def generate_payment():
 
 
 
-class PaymentView(LoginRequiredMixin, View):
+# class PaymentView(LoginRequiredMixin, View):
     
-    template_name = 'payment.html'
-    """ let order_number = "{{order_number}}";
-        let agency_code = "{{agency_code}}";
-        let secure_code = "{{secure_code}}";
-        let domain_name = "{{domain_name}}";
-        let url_redirection_success = "{{url_redirection_success}}";
-        let url_redirection_failed = "{{url_redirection_failed}}";
-        let amount = "{{ amount}}";
-        let city = "{{city}}";
-        let email = "{{email}}";
-        let clientFirstName = "John";
-        let clientLastName = "Doe";
-        let clientPhone = "{{clientPhone}}";"""
+#     template_name = 'payment.html'
+#     """ let order_number = "{{order_number}}";
+#         let agency_code = "{{agency_code}}";
+#         let secure_code = "{{secure_code}}";
+#         let domain_name = "{{domain_name}}";
+#         let url_redirection_success = "{{url_redirection_success}}";
+#         let url_redirection_failed = "{{url_redirection_failed}}";
+#         let amount = "{{ amount}}";
+#         let city = "{{city}}";
+#         let email = "{{email}}";
+#         let clientFirstName = "John";
+#         let clientLastName = "Doe";
+#         let clientPhone = "{{clientPhone}}";"""
     
-    def get(self, request, *args, **kwargs):
+#     def get(self, request, *args, **kwargs):
         
         
-        return render(request, self.template_name)
+#         return render(request, self.template_name)
     
-    def post(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+#     def post(self, request, *args, **kwargs):
+#         return render(request, self.template_name)
     
     
 
